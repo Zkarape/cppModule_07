@@ -38,10 +38,10 @@ public:
     // assignment op overload
     Array &operator=(const Array &assign)
     {
+        if (this == &assign)
+            return *this;
         if (this->_array)
             delete[] _array;
-        if (this = &assign)
-            return *this;
         _n = assign._n;
         _array = new T[_n];
         for (int i = 0; i < _n; i++)
@@ -55,17 +55,23 @@ public:
     T &operator[](unsigned int i) const
     {
         if (i >= 0 && i < _n)
+        {
+            std::cout << "I am hereee" << std::endl;
             return (_array[i]);
+        }
         throw std::exception();
     }
+
     unsigned int size() const
     {
         return (_n);
     }
+
     class OutOfBoundException : public std::exception
     {
         const char *what() const throw();
     };
+
     // destructor
     ~Array()
     {

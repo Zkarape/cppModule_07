@@ -1,12 +1,45 @@
 #include "iter.hpp"
 
-void foo(int &a)
+// void foo(int &a)
+// {
+//     std::cout << "I am foo()" << std::endl;
+// }
+
+// int main()
+// {
+//     int intArray[] = {1, 2, 3, 4, 5};
+//     iter(intArray, 5, foo);
+// }
+
+
+class Awesome
 {
-    std::cout << "I am foo()" << std::endl;
+public:
+    Awesome(void) : _n(42) { return; }
+    int get(void) const { return this->_n; }
+
+private:
+    int _n;
+};
+
+std::ostream &operator<<(std::ostream &o, Awesome const &rhs)
+{
+    o << rhs.get();
+    return o;
 }
-//can I put different types for T????????????
+
+template <typename T>
+void print(T const &x)
+{
+    std::cout << x << std::endl;
+    return;
+}
+
 int main()
 {
-    int intArray[] = {1, 2, 3, 4, 5};
-    iter(intArray, 5, foo);
+    int tab[] = {0, 1, 2, 3, 4};
+    Awesome tab2[5];
+    iter(tab, 5, print);
+    iter(tab2, 5, print);
+    return 0;
 }
