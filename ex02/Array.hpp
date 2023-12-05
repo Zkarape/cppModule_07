@@ -18,14 +18,12 @@ public:
         _array = new T[_n];
     }
 
-    // parametrized constructor
     Array(unsigned int n) : _n(n)
     {
         std::cout << "Parametrized Constructor called and created empty Array of size 0" << std::endl;
         _array = new T[n];
     }
 
-    // copy constructor
     Array(const Array &cpy) : _n(cpy._n)
     {
         std::cout << "Copy Constuctor called" << std::endl;
@@ -35,7 +33,6 @@ public:
         }
     }
 
-    // assignment op overload
     Array &operator=(const Array &assign)
     {
         if (this == &assign)
@@ -51,7 +48,6 @@ public:
         return (*this);
     }
 
-    //[] operator overload
     T &operator[](unsigned int i) const
     {
         if (i >= 0 && i < _n)
@@ -72,7 +68,6 @@ public:
         const char *what() const throw();
     };
 
-    // destructor
     ~Array()
     {
         delete[] _array;

@@ -15,4 +15,15 @@ void iter(T *var, size_t len, void(*foo)(T const &))
     }
 }
 
+template <typename T>
+void iter(T *var, size_t len, void(*foo)(T &))
+{
+    if (var == NULL || foo == NULL)
+        return;
+    for (size_t i = 0; i < len; i++)
+    {
+        foo(var[i]);
+    }
+}
+
 #endif
